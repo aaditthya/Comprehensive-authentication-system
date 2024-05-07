@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>login</title>
+  <!-- Latest compiled and minified CSS -->
+  <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/ImageLogin.css')}}" />-->
+  <style>
+    
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100;400;500;600;700&family=Figtree:wght@300;400;500;600;700;800;900&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Red+Hat+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap");
+
+body {
+  font-family:serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+}
+
+
+
+nav {
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#007BFF;;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height:3rem;
+}
+
+.logo {
+  display:flex;
+  gap:1rem;
+  justify-content: center;
+  align-items:center;
+  color:white;
+}
+.logo h2{
+  color:white;
+  font-size:x-large;
+}
+.logo img {
+  height: 2.5rem;
+  width:2.5rem;
+  margin-right:2px;
+}
+nav a{
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+nav a:hover {
+  color: #007BFF;
+}
+
+.display-frame {
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+.heading {
+  display: flex;
+  gap: 20px;
+}
+
+h1 {
+  color: var(--grey-grey-800, #0063db);
+  text-align: center;
+
+  /* Desktop/Header/Heading 1 */
+  font-family: Catamaran;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42px; /* 116.667% */
+}
+h2 {
+  color: var(--grey-grey-800, #39434f);
+  text-align: center;
+
+  /* Desktop/Header/Heading 1 */
+  font-family: Catamaran;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42px; /* 116.667% */
+}
+a {
+  text-decoration: none;
+}
+button {
+  border-radius: 14px;
+  border: none;
+  background: var(--blue-blue-500, #1b85f3);
+  display: flex;
+  padding: 17px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  align-self: stretch;
+  box-shadow: 0px 1px 4px 0px rgba(139, 158, 184, 0.2);
+
+  color: var(--grey-white, #fff);
+  text-align: center;
+  font-feature-settings: "dlig" on;
+  font-family: Catamaran;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 125% */
+}
+p {
+  color: var(--grey-grey-800, #39434f);
+  text-align: center;
+  font-family: Catamaran;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+span {
+  color: var(--grey-grey-800, #314154);
+  text-align: center;
+  font-family: Catamaran;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px; /* Adjust the gap as needed */
+  padding: 20px;
+}
+
+img {
+  width: 150px;
+  height: 150px;
+  display: block;
+}
+
+.switch p {
+  color: red;
+}
+
+#username {
+  padding: 8px;
+  border-radius: 8px;
+  width: 300px;
+  border: 1px solid #1b85f3;
+}
+footer {
+  background-color:#1b85f3;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer p{
+  color:white;
+}
+
+
+  </style>
+</head>
+
+
+<body>
+  <header>
+    <nav >
+      <div class="logo">
+        <img src="https://cdn3.iconfinder.com/data/icons/web-con-set-98-solid/128/authorized_permission_permit_allow_recognize_verify_approve_accept_fingerprint_authentication_scan-512.png" alt="Logo">
+        <h2>AuthGuard</h2>
+      </div>
+      <a href="/" class="home-link">Home</a>
+    </nav>
+  </header>
+  <div class="display-frame">
+    <div class="heading">
+      <a href="/imglogin">
+        <h1 class="my-2">Grid Login</h1>
+      </a>
+      <!--<a href="/">-->
+      <!--  <h2>Face ID Login</h2>-->
+      <!--</a>-->
+    </div>
+    <p>select your 4 images to login</p>
+    <span>Selected Images and order:</span>
+    <span class="order-display"></span>
+    <input type="text" name="username" id="username" placeholder="Enter your username here" />
+    <div class="image-container">
+      <img src="../static/assets/img1.jpeg" alt="Image 1" name="image1" id="image1" />
+      <img src="../static/assets/img2.jpeg" alt="Image 2" name="image2" id="image2" />
+      <img src="../static/assets/img3.jpeg" alt="Image 3" name="image3" id="image3" />
+      <img src="../static/assets/img4.jpeg" alt="Image 4" name="image4" id="image4" />
+      <img src="../static/assets/img5.jpg" alt="Image 5" name="image5" id="image5" />
+      <img src="../static/assets/img6.jpg" alt="Image 6" name="image6" id="image6" />
+      <img src="../static/assets/img7.jpg" alt="Image 7" name="image7" id="image7" />
+      <img src="../static/assets/img8.jpg" alt="Image 8" name="image8" id="image8" />
+      <img src="../static/assets/img9.jpg" alt="Image 9" name="image9" id="image9" />
+      <img src="../static/assets/img10.jpg" alt="Image 10" name="image10" id="image10" />
+      <img src="../static/assets/img11.jpg" alt="Image 11" name="image11" id="image11" />
+      <img src="../static/assets/img12.jpg" alt="Image 12" name="image12" id="image12" />
+      <img src="../static/assets/img13.jpeg" alt="Image 13" name="image13" id="image13" />
+      <img src="../static/assets/img14.jpg" alt="Image 14" name="image14" id="image14" />
+      <img src="../static/assets/img15.jpeg" alt="Image 15" name="image15" id="image15" />
+      <img src="../static/assets/img16.jpg" alt="Image 16" name="image16" id="image16" />
+    </div>
+    <button id="submit-btn">Login</button>
+    <a href="/imgsignup" class="switch">
+      <p>Don't have the account setup ? Image Signup here</p>
+    </a>
+  </div>
+  <footer>
+    <p>&copy; 2024 AuthGuard. All rights reserved.</p>
+</footer>
+
+  <script>
+    // Initialize an object to store selected images and their order
+    const selectedImages = {};
+
+    // Get references to the necessary elements
+    const imageContainer = document.querySelector(".image-container");
+    const orderDisplay = document.querySelector(".order-display");
+    const username = document.getElementById("username");
+
+    username.addEventListener("change" , getUsername);
+
+    let user ="";
+    function getUsername(event){
+      user= event.target.value;
+    }
+
+    // Add click event listeners to the images
+    const images = imageContainer.querySelectorAll("img");
+    images.forEach((image) => {
+      image.addEventListener("click", selectImage);
+    });
+
+    function selectImage(event) {
+      const image = event.target;
+      const imageId = image.getAttribute("id");
+      if (selectedImages[imageId]) {
+        // If the image is already selected, unselect it
+        delete selectedImages[imageId];
+        image.style.filter = "none";
+      } else if (Object.keys(selectedImages).length < 4) {
+        // If less than 4 images are selected, add the selected image
+        selectedImages[imageId] = true;
+        image.style.filter = "grayscale(100%)";
+      }
+
+      // Update the display with the selected image names in order
+      updateOrderDisplay();
+    }
+
+    function updateOrderDisplay() {
+      // Clear the orderDisplay
+      orderDisplay.innerHTML = "";
+
+      // Iterate over selectedImages and display the image names in order
+      let order = 1;
+      for (const imageId in selectedImages) {
+        const imageName = document
+          .getElementById(imageId)
+          .getAttribute("alt");
+        const orderText = `Image${order}`;
+        orderDisplay.textContent += imageName + " > ";
+        order++;
+      }
+    }
+    const submitButton = document.getElementById("submit-btn");
+    submitButton.addEventListener("click", submitImages);
+
+    function submitImages() {
+      // Send the selectedImages object to the /imglogin route in Flask
+      fetch("/imglogin", {
+        method: "POST",
+        body: JSON.stringify({selectedImages, "username":user}),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.redirect_url) {
+            // Redirect to the URL received in the response
+            window.location.href = data.redirect_url;
+          }
+        });
+    }
+  </script>
+</body>
+
+</html>

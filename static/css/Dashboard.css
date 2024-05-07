@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100;400;500;600;700&family=Figtree:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Red+Hat+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Catamaran", sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../assets/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.navbar {
+  margin: 0 80px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 10px;
+  font-size: 1.5em;
+  color: var(--grey-grey-700, #606873);
+}
+
+.upload-btn {
+  background: #fff;
+  color: blue;
+  border: 2px solid #1b85f3;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.signup-button {
+  color: var(--grey-grey-700, #606873);
+  padding: 10px 20px;
+  font-style: normal;
+  font-weight: 500;
+  margin-right: 50px;
+}
+
+.signup-link {
+  color: var(--blue-blue-500, #1b85f3);
+  font-style: normal;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.main-content {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  overflow-y: scroll;
+  padding: 10px;
+  align-items: center;
+}
+
+/* using table  */
+.table {
+  width: 1192px;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: Roboto;
+  font-weight: 600;
+}
+
+.table th,
+.table td {
+  text-align: center;
+  padding: 10px;
+}
+
+thead {
+  background-color: #364261;
+  color: #fff;
+}
+
+thead tr {
+  border-radius: 80px;
+}
+
+tbody {
+  background-color: white;
+  color: #364261;
+}
+
+tbody tr {
+  border: 1px solid #d0d5dd;
+}
+
+.table .file-name {
+  width: 35%;
+}
+
+.table .file-size,
+.table .file-upload-date {
+  width: 15%;
+}
+
+.table .icons {
+  width: 5%;
+}
+
+.table .dropdown {
+  width: 15%;
+}
+
+.dropdown-items {
+  color: #1b85f3;
+  border: 1px solid #1b85f3;
+  outline: none;
+  border-radius: 5px;
+  width: 100%;
+  align-items: center;
+}
+
+.table .submit-button {
+  width: 10%;
+}
+
+.table .submit-button button {
+  color: white;
+  border-radius: 6px;
+  border: 1px solid #1b85f3;
+  height: 35px;
+  background: #1b85f3;
+  width: 70%;
+}
+
+
+.modal{
+  width: 400px;
+  padding: 40px 20px;
+  border-radius: 24px;
+  background: var(--grey-white, #fff);
+  display: none;
+  z-index: 100;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  box-shadow: 0px 4px 20px -2px rgba(50, 50, 71, 0.02),
+    0px 0px 8px 0px rgba(12, 26, 75, 0.1);
+}
+
+
+.modal-content {
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  color: var(--grey-grey-800, #39434f);
+  text-align: center;
+
+  /* Desktop/Header/Heading 1 */
+  font-family: Catamaran;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42px; /* 116.667% */
+}
+h4 {
+  color: #1a66ff;
+  text-align: center;
+
+  /* Desktop/Body/Medium 16px */
+  font-family: Noto Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+
+
+#modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(211, 211, 211, 0.7); /* Light gray with some transparency */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9; /* Ensure it's above other content */
+}
+
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

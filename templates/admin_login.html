@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        body {
+            font-family:  sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://bleuwire.com/wp-content/uploads/2019/10/data-retention-policy.png'); /* Replace 'background_image.jpg' with the path to your image */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            background-color:rgb(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+            width: 300px;
+            display:flex;
+            flex-direction: column;
+            border:1px solid white;
+            color:white;
+          
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-item {
+            margin-bottom: 15px;
+            display:flex;
+            flex-direction:column;
+        
+
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom:1rem;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 90%;
+            padding: 0.5rem;
+            outline:none;
+            border: 2px solid white;
+            background-color:rgb(0, 0, 0, 0.8);
+            border-radius: 0.5rem;
+            color:white;
+
+            
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            
+            
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Admin Login</h2>
+        {% if error_message %}
+        <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+        <form method="POST">
+            <div class="form-item">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="John" required>
+            </div>
+            <div class="form-item">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="**********" required>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+
+</html>

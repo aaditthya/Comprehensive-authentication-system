@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Dashboard.css')}}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100;400;500;600;700&family=Figtree:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Red+Hat+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap");
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Catamaran", sans-serif;
+        width: 100vw;
+        height: 100vh;
+        background-image: url("../assets/bg.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        color: #39434f;
+    }
+
+    .navbar {
+        background-color: #1b85f3;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 80px;
+    }
+
+    .navbar-logo {
+        display: flex;
+        align-items: center;
+        
+    }
+
+    .logo {
+        
+        font-size: 1.5em;
+    }
+
+    .upload-btn {
+        background: #fff;
+        color: blue;
+        border: 2px solid #1b85f3;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .signup-button {
+        padding: 10px 20px;
+        font-weight: 500;
+        margin-right: 50px;
+    }
+
+    .signup-link {
+        color: #1b85f3;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .signup-button {
+      color: var(--grey-grey-700, #606873);
+      padding: 10px 20px;
+      font-style: normal;
+      font-weight: 500;
+      margin-right: 50px;
+    }
+    
+    .signup-link {
+      color: var(--blue-blue-500, #1b85f3);
+      font-style: normal;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    
+    .main-content {
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      height: 600px;
+      overflow-y: scroll;
+      padding: 10px;
+      align-items: center;
+    }
+    
+    /* using table  */
+    .table {
+      width: 1192px;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-family: Roboto;
+      font-weight: 600;
+    }
+    
+    .table th,
+    .table td {
+      text-align: center;
+      padding: 10px;
+    }
+    
+    thead {
+      background-color: #364261;
+      color: #fff;
+    }
+    
+    thead tr {
+      border-radius: 80px;
+    }
+    
+    tbody {
+      background-color: white;
+      color: #364261;
+    }
+    
+    tbody tr {
+      border: 1px solid #d0d5dd;
+    }
+    
+    .table .file-name {
+      width: 35%;
+    }
+    
+    .table .file-size,
+    .table .file-upload-date {
+      width: 15%;
+    }
+    
+    .table .icons {
+      width: 5%;
+    }
+    
+    .table .dropdown {
+      width: 15%;
+    }
+    
+    .dropdown-items {
+      color: #1b85f3;
+      border: 1px solid #1b85f3;
+      outline: none;
+      border-radius: 5px;
+      width: 100%;
+      align-items: center;
+    }
+    
+    .table .submit-button {
+      width: 10%;
+    }
+    
+    .table .submit-button button {
+      color: white;
+      border-radius: 6px;
+      border: 1px solid #1b85f3;
+      height: 35px;
+      background: #1b85f3;
+      width: 70%;
+    }
+    
+    
+    .modal{
+      width: 400px;
+      padding: 40px 20px;
+      border-radius: 24px;
+      background: var(--grey-white, #fff);
+      display: none;
+      z-index: 100;
+      position: absolute;
+      top: 30%;
+      left: 40%;
+      box-shadow: 0px 4px 20px -2px rgba(50, 50, 71, 0.02),
+        0px 0px 8px 0px rgba(12, 26, 75, 0.1);
+    }
+    
+    
+    .modal-content {
+      gap: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    p {
+      color: var(--grey-grey-800, #39434f);
+      text-align: center;
+    
+      /* Desktop/Header/Heading 1 */
+      font-family: Catamaran;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 42px; /* 116.667% */
+    }
+    h4 {
+      color: #1a66ff;
+      text-align: center;
+    
+      /* Desktop/Body/Medium 16px */
+      font-family: Noto Sans;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px; /* 150% */
+    }
+    
+    
+    #modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(211, 211, 211, 0.7); /* Light gray with some transparency */
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9; /* Ensure it's above other content */
+    }
+    
+    
+    .upload-btn-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+    
+    .btn {
+      border: 2px solid gray;
+      color: gray;
+      background-color: white;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 20px;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    
+    .upload-btn-wrapper input[type=file] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    /* Logout button style */
+    .logout-button {
+        color: #fff;
+        background-color: #ff4d4d;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="navbar-logo">
+      <i class="fa-solid fa-shield-halved" style="font-size:x-large; margin-right:4px"></i>
+      <span class="logo">AuthGuard</span>
+    </div>
+    {% if user == 'Admin' %}
+    <button class="upload-btn" id="uploadButton" onclick="openModal()">Upload +</button>
+    {% endif %}
+    <button class="logout-button" onclick="logout()">Logout</button> <!-- Logout button -->
+  </div>
+
+  <div class="main-content">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="file-name">File Name</th>
+          <th class="file-size">File Size</th>
+          <th class="file-upload-date">Date</th>
+          <th class="icons" colspan="2">Action</th>
+          {% if user == 'Admin' %}
+          <th class="icons">Assign to</th>
+          <th class="icons"></th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in assigned_files %}
+        <tr>
+          <td class="file-name">{{ item }}</td>
+          <td class="file-size"> <!-- Logic to display file size --></td>
+          <td class="file-upload-date"> <!-- Logic to display upload date --></td>
+          <td class="icons">
+            <button style="border: none; background-color: transparent;" onclick="openfile(this)">
+              <img src="../static/assets/eye.svg" alt="">
+            </button>
+          </td>
+          {% if user == 'Admin' %}
+          <td class="icons">
+            <select class="employee-dropdown">
+              <option value="" selected disabled hidden>Select Employee</option>
+              {% for employee in employee_list %}
+              <option value="{{ employee }}">{{ employee }}</option>
+              {% endfor %}
+            </select>
+          </td>
+          <td class="icons">
+            <button class="assign-button" onclick="assignFile(this)">Assign</button>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div id="modal-overlay"></div>
+  <div class="modal" id="successModal">
+    <div class="modal-content">
+      <form method="POST" action="/uploadfile" enctype="multipart/form-data">
+        <div class="upload-btn-wrapper">
+          <button class="btn">Upload a file</button>
+          <input type="file" name="pdf_doc" accept="application/pdf" />
+        </div>
+        <a href="/dashboard" style="text-decoration: none">
+          <button class="upload-btn">Continue</button>
+        </a>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    async function assignFile(button) {
+      const row = button.closest('tr');
+      const fileName = row.querySelector('.file-name').innerText;
+      const selectedEmployee = row.querySelector('.employee-dropdown').value;
+
+      const formData = {
+        fileName: fileName,
+        employee: selectedEmployee
+      };
+
+      try {
+        const response = await fetch('/assign_file', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const responseData = await response.json();
+        alert(responseData.status);
+
+      } catch (error) {
+        console.error('Error during fetch:', error.message);
+      }
+    }
+
+    async function openfile(button) {
+      const fileName = button.closest('tr').querySelector('.file-name').innerText;
+
+      try {
+        const response = await fetch('/fileview', {
+          method: "POST",
+          body: JSON.stringify({ "fileName": fileName }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const responseData = await response.json();
+
+        const redirectUrl = responseData.redirect_url;
+        const filePath = responseData.file_path;
+
+        window.location.href = '/fileview?path=' + encodeURIComponent(filePath);
+
+      } catch (error) {
+        console.error('Error during fetch:', error.message);
+      }
+    }
+
+    function openModal() {
+      document.getElementById("successModal").style.display = "block";
+      document.getElementById("modal-overlay").style.display = "block";
+    }
+
+    function logout() {
+      window.location.href="/"
+    }
+  </script>
+
+</body>
+
+</html>

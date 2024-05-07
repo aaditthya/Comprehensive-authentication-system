@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100;400;500;600;700&family=Figtree:wght@300;400;500;600;700;800;900&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Red+Hat+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap");
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url(../assets/bg.jpg);
+}
+
+.display-frame {
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.heading {
+  display: flex;
+  gap: 20px;
+}
+h1 {
+  color: var(--grey-grey-800, #0063db);
+  text-align: center;
+
+  /* Desktop/Header/Heading 1 */
+  font-family: Catamaran;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42px; /* 116.667% */
+}
+h2 {
+  color: var(--grey-grey-800, #39434f);
+  text-align: center;
+
+  /* Desktop/Header/Heading 1 */
+  font-family: Catamaran;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42px; /* 116.667% */
+}
+a {
+  text-decoration: none;
+}
+
+button {
+  border-radius: 14px;
+  border: none;
+  background: var(--blue-blue-500, #1b85f3);
+  display: flex;
+  padding: 17px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  align-self: stretch;
+  box-shadow: 0px 1px 4px 0px rgba(139, 158, 184, 0.2);
+
+  color: var(--grey-white, #fff);
+  text-align: center;
+  font-feature-settings: "dlig" on;
+  font-family: Catamaran;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 125% */
+}
+.switch p {
+  color: red;
+  font-family: Catamaran;
+}
+.switch {
+  text-decoration: none;
+}

@@ -1,0 +1,19 @@
+<!-- Facelogin.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Login</title>
+</head>
+<body>
+    <h2>Face Login</h2>
+    <form id="login-form" action="/facelogin" method="post" enctype="multipart/form-data">
+        <label for="image">Upload Image:</label><br>
+        <input type="file" id="image" name="image" accept="image/*" required><br><br>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>

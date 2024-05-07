@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* General Styles */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+
+        /* Navbar Styles */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 50px;
+            text-align: center;
+            height: 70vh;
+            background: lightgrey;
+        }
+
+        .record {
+            display: inline-block;
+            padding: 0.5rem;
+            height: 3rem;
+            width: 10rem;
+            border-radius: 1rem;
+            margin-top: 2rem;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px; /* Add space below the record button */
+        }
+
+        .record:hover {
+            background-color: #0056b3;
+        }
+
+        #recorded-voice {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        /* Submit Button Styles */
+        #submit {
+            display: block; /* Make the submit button a block element */
+            width: 100%; /* Full width */
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #submit:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo">
+            <img src="https://cdn3.iconfinder.com/data/icons/web-con-set-98-solid/128/authorized_permission_permit_allow_recognize_verify_approve_accept_fingerprint_authentication_scan-512.png"
+                 alt="Logo">
+            <h2>AuthGuard</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section class="section">
+        <h1>Voice Signup</h1>
+        <form id="voice-login-form" enctype="multipart/form-data">
+            <input type="text" id="username" name="username" placeholder="Enter username" required> <!-- Add input field for username -->
+            <audio id="recorded-voice" controls></audio>
+            <div id="recordButton" class="record">
+                <p>Start Recording</p>
+            </div>
+            <button type="submit" id="submit">Submit</button>
+        </form>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2023 AuthGuard. All rights reserved.</p>
+</footer>
+<script>
+    let mediaRecorder;
+    let chunks = [];
+
+    const recordButton = document.getElementById('recordButton');
+    const audioElement = document.getElementById('recorded-voice');
+
+    recordButton.addEventListener('click', () => {
+        if (recordButton.querySelector('p').textContent === 'Start Recording') {
+            startRecording();
+            recordButton.querySelector('p').textContent = 'Stop Recording';
+        } else {
+            stopRecording();
+            recordButton.querySelector('p').textContent = 'Start Recording';
+        }
+    });
+
+    function startRecording() {
+        navigator.mediaDevices.getUserMedia({audio: true})
+            .then(stream => {
+                mediaRecorder = new MediaRecorder(stream);
+
+                mediaRecorder.ondataavailable = event => {
+                    chunks.push(event.data);
+                };
+
+                mediaRecorder.onstop = () => {
+                    blob = new Blob(chunks, {'type': 'audio/ogg; codecs=opus'});
+                    chunks = [];
+                    const audioURL = URL.createObjectURL(blob);
+                    audioElement.src = audioURL;
+                };
+
+                mediaRecorder.start();
+            })
+            .catch(err => {
+                console.error('Error accessing the microphone: ', err);
+            });
+    }
+
+    function stopRecording() {
+        mediaRecorder.stop();
+    }
+
+
+    document.getElementById('submit').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const form = document.querySelector('form');
+        const formData = new FormData(form); // Create FormData object
+
+        // Check if both audio data and username are present
+        if (blob && formData.get('username')) {
+            // Append audio data to FormData
+            const audioBlob = blob;
+            formData.append('audio', audioBlob, 'recorded_audio.ogg');
+
+            // Send POST request with form data
+            fetch('/voicesignup', {
+                method: 'POST',
+                body: formData
+            }).then(res => {
+            if (res.ok) { // Check if registration was successful
+                window.location.href = '/voicelogin'; // Navigate to login route
+            } else {
+                throw new Error('Registration failed');
+            }
+        }).catch(error => {
+                console.error('Error:', error);
+            });
+        } else {
+            console.error('Error: Please provide both username and record audio.');
+        }
+    });
+</script>
+</body>
+</html>

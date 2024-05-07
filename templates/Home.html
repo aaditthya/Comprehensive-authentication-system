@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advance Authentication System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+body {
+    font-family:serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+}
+
+/* Navbar Styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#007BFF;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.logo{
+    display:flex;
+    gap:1rem;
+    justify-content: center;
+    color:white;
+    
+}
+
+.logo img {
+    height: 50px;
+    
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 5rem;
+    margin-right:4rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #007BFF;
+}
+
+/* Hero Section Styles */
+.hero {
+    background-color: #007BFF;
+    padding: 50px 0;
+    text-align: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.cta-btn {
+    background-color: #fff;
+    color: #007BFF;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: 2px solid #007BFF;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-btn:hover {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+/* Features Section Styles */
+.features {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.feature-item {
+    display: inline-block;
+    width: 200px;
+    margin: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+    transition: transform 0.3s ease;
+    border-radius: 0.5rem;
+    padding:1rem;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-item img {
+    width: 100px;
+    height: 100px;
+}
+
+.feature-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.feature-item p {
+    font-size: 1.1em;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width:8rem;
+    z-index: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://cdn3.iconfinder.com/data/icons/web-con-set-98-solid/128/authorized_permission_permit_allow_recognize_verify_approve_accept_fingerprint_authentication_scan-512.png" alt="Logo">
+                <h2>AuthGuard</h2>
+            </div>
+            <ul class="nav-links">
+                <li class="dropdown">
+                    <a >Login &#9662;</a>
+                    <div class="dropdown-content">
+                        <a href="/facelogin">Face Login</a>
+                        <a href="/voicelogin">Voice Login</a>
+                        <a href="/imglogin">Image Signup</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a >Signup &#9662;</a>
+                    <div class="dropdown-content">
+                        <a href="/facesignup">Face Signup</a>
+                        <a href="/voicesignup">Voice Signup</a>
+                        <a href="/imgsignup">Image Signup</a>
+                    </div>
+                </li>
+              
+               
+            </ul>
+          
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Advance Authentication System</h1>
+            <p>Incorporating Face Id, Text password, Sensitive information retrieval, Login Activity Tracking, Voice Authentication</p>
+            <a href="#" class="cta-btn">Learn More</a>
+        </section>
+        <section class="features">
+            <h2>Our Features</h2>
+            <div class="feature-item">
+                <img src="https://th.bing.com/th/id/OIP.6ZzSyD0VIBqhu-8w2oHJawHaDt?rs=1&pid=ImgDetMain" alt="Face ID">
+                <h3>Face ID</h3>
+                <p>Secure and convenient authentication using facial recognition technology.</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://th.bing.com/th/id/OIP.lquiUAqiePRl-KH3XxV6-gHaE5?rs=1&pid=ImgDetMain" alt="Text Password">
+                <h3>Text Password</h3>
+                <p>Strong and secure password authentication to protect your account.</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://th.bing.com/th/id/OIP.xnuLdrMa_5afuQYjguPKNwHaE3?rs=1&pid=ImgDetMain" alt="Sensitive Information Retrieval">
+                <h3>Sensitive Information Retrieval</h3>
+                <p>Efficient and secure retrieval of sensitive information with enhanced security measures.</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://th.bing.com/th/id/OIP.aqwPYpRwq_Bi1BfND9g0xwAAAA?rs=1&pid=ImgDetMain" alt="Login Activity Tracking">
+                <h3>Login Activity Tracking</h3>
+                <p>Monitor and track login activities for security and accountability.</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://www.timedoctor.com/blog/images/2021/10/voice-authentication1.jpg" alt="Voice Authentication">
+                <h3>Voice Authentication</h3>
+                <p>Advanced voice recognition technology for secure and user-friendly authentication.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 AuthGuard. All rights reserved.</p>
+    </footer>
+</body>
+</html>

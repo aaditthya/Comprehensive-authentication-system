@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<style>
+/* General Styles */
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar Styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007BFF;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.logo h2 {
+    margin: 0;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #0056b3;
+}
+
+/* Container Styles */
+.container {
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th,
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: left;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+.upload-form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.upload-form input[type="file"],
+.upload-form select {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.upload-form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+</style>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                 <img src="https://cdn3.iconfinder.com/data/icons/web-con-set-98-solid/128/authorized_permission_permit_allow_recognize_verify_approve_accept_fingerprint_authentication_scan-512.png" alt="Logo">
+                <h2>AuthGuard</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('admin_login') }}">Logout</a></li>
+             
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Admin</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ 'Yes' if user[2] == 1 else 'No' }}</td>
+                    <td>
+                        <form action="{{ url_for('assign_file') }}" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file">
+                            <input type="hidden" name="user" value="{{ user[1] }}">
+                            <input type="submit" value="Assign File">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="upload-form">
+            <form action="{{ url_for('assign_file') }}" method="post" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <select name="user">
+                    {% for user in users %}
+                    <option value="{{ user[1] }}">{{ user[1] }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Assign File">
+            </form>
+        </div>
+       
+    </div>
+    <footer>
+        <p>&copy; 2023 AuthGuard. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

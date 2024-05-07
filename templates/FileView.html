@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File View</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/FileView.css')}}" />
+</head>
+<body>
+
+  
+
+  <div class="pdf-container">
+    <embed class="pdf-embed" id="pdf-embed" type="application/pdf" width="50%" height="50%">
+      
+
+    <!-- Replace "your-pdf-file.pdf" with the path to your PDF file -->
+  </div>
+
+  <script>
+    // Get the file path from the URL query parameter
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const filePath = urlParams.get('path');
+
+    // Set the source of the PDF embed element
+    const pdfEmbed = document.getElementById('pdf-embed');
+    pdfEmbed.src = filePath;
+  </script>
+
+</body>
+</html>
