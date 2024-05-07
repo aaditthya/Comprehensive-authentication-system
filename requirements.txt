@@ -1,0 +1,7 @@
+flask
+shutil
+opencv-python
+numpy
+presidio-anonymizer
+PyPDF2
+fpdf
